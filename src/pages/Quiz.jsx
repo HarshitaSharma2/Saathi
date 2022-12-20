@@ -23,18 +23,6 @@ const Quiz = () => {
             navigate("/");
         }
         user.current = localUser;
-        const getUserAnswers = async () => {
-            const userRef = doc(db, "users", user.current.email);
-            const userSnap = await getDocs(userRef);
-            const userData = userSnap.data();
-            if (userData.answers) {
-                let ans = {};
-                userData.answers.forEach((answer, index) => {
-                    ans[index] = answer.answer;
-                });
-                setAnswers(ans);
-            }
-        }
         const getQuestions = async () => {
             const questionsCol = collection(db, "questions");
             const questionSnapshot = await getDocs(questionsCol);
